@@ -39,6 +39,11 @@ public class Banque implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	@Override
+	public String toString() {
+		return  nom;
+	}
 	
 //	@OneToMany
 //	private Set<Client> clients;

@@ -19,24 +19,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "client")
-public class Client implements Serializable {
+public class Client {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotBlank
 	@Column(length = 50)
 	private String nom;
-
+	
+	@NotBlank
 	@Column(length = 50)
 	private String prenom;
-
+	
+//	@Past
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-
+	
+//	@Valid
+	@NotNull
 	@Embedded
 	private Adresse adresse;
 
@@ -108,7 +120,9 @@ public class Client implements Serializable {
 		this.prenom = prenom;
 	}
 
+//	@DateTimeFormat(pattern="dd-MM-YYYY")
 	public Date getDateNaissance() {
+//		return dateNaissance.toString();
 		return dateNaissance;
 	}
 

@@ -2,6 +2,8 @@ package fr.diginamic.springtp05banqueApp.exception;
 
 public class OperationNotFoundException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+	
 	public OperationNotFoundException() {
 		super();
 		// TODO Auto-generated constructor stub

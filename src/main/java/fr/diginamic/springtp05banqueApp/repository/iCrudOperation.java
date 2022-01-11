@@ -11,6 +11,6 @@ import fr.diginamic.springtp05banqueApp.model.Operation;
 public interface iCrudOperation extends CrudRepository<Operation, Integer> {
 
 	@Query("SELECT op FROM Operation op WHERE op.compte = :compte")
-	public Iterable<Operation> findOperationsByCompte(Optional<Compte> compte);
+	public Iterable<Operation> findOperationsByCompte(Compte compte);
 	
 }

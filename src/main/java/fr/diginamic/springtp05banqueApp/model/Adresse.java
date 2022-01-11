@@ -4,20 +4,31 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Embeddable
-public class Adresse implements Serializable{
+public class Adresse {
 	
 	private Integer numero;
 	
+//	@Pattern(regexp=".*[0123456789]")	
+	@NotBlank
 	@Column(length=50)
 	private String rue;
 	
+	@NotBlank
 	@Column(length=5)
 	private String codePostal;
 	
+	@NotBlank
 	@Column(length=50)
 	private String ville;
+
+	@Override
+	public String toString() {
+		return numero + ", rue " + rue + " " + codePostal + " " + ville;
+	}
 
 	public Integer getNumero() {
 		return numero;

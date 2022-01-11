@@ -1,5 +1,7 @@
 package fr.diginamic.springtp05banqueApp.controllerrest;
 
+
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,47 +19,51 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.diginamic.springtp05banqueApp.exception.CompteNotFoundException;
 import fr.diginamic.springtp05banqueApp.model.Client;
 import fr.diginamic.springtp05banqueApp.model.Compte;
+import fr.diginamic.springtp05banqueApp.model.CompteCourant;
 import fr.diginamic.springtp05banqueApp.repository.iCrudCompte;
 
 @RestController
-@RequestMapping("api/banque/compte")
-public class ControllerCompte {
+@RequestMapping("api/banque/comptecourant")
+public class ControllerCompte extends  ControllerCptAbstract<CompteCourant>{
 	
-	@Autowired
-	iCrudCompte ccpt;
+//	@Autowired
+//	iCrudCompte ccpt;
 
 	@GetMapping("{id}")
-	public Optional<Compte> getCompte(@PathVariable("id") Integer pid) throws CompteNotFoundException {
-		Optional<Compte> result = ccpt.findById(pid);
-		if (result.isEmpty()) {
+	public CompteCourant getCompte(@PathVariable("id") Integer pid) throws CompteNotFoundException {
+//		Optional<CompteCourant> result = ccpt.findById(pid);
+		CompteCourant result = ccpt.getCompteCourantById(pid);
+		if (result == null) {
 			String s = "Compte non trouvé, id: [" + pid + "]";
 			throw new CompteNotFoundException(s);
 		}
 
-		return result;
+		return  result;
 	}
 	
-	@GetMapping("/clientsbycompte/{id}")
-	public Iterable<Client> getClientsByCompte(@PathVariable("id" ) Integer pid) throws CompteNotFoundException {
-		Optional<Compte> compte = ccpt.findById(pid);
-		if (compte.isEmpty()) {
-			String s = "Compte non trouvé, id: [" + pid + "]";
-			throw new CompteNotFoundException(s);
-		}
+	@GetMapping("allcomptescourant")
+	public Iterable<CompteCourant> getCompteAll() throws CompteNotFoundException {
+		return ccpt.getAllCompteCourant();
 		
-		Iterable<Client> result = ccpt.findClientsByCompte(compte);
-		
-		return result;
 	}
+	
+//	@GetMapping("/clientsbycompte/{id}")
+//	public Iterable<Client> getClientsByCompte(@PathVariable("id" ) Integer pid) throws CompteNotFoundException {
+////		CompteCourant compte = (CompteCourant) ccpt.findById(pid).get();
+////		if (compte.isEmpty()) {
+////			String s = "Compte non trouvé, id: [" + pid + "]";
+////			throw new CompteNotFoundException(s);
+////		}
+//		
+//		Iterable<Client> result = ccpt.findClientsByCompte(compte);
+//		
+//		return result;
+//	}
 
-	@GetMapping("all")
-	public Iterable<Compte> getCompteAll() {
 
-		return ccpt.findAll();
-	}
 	
 	@PutMapping("{id}")
-	public Compte updateCompte(@PathVariable("id") Integer pid, @RequestBody Compte compte) throws CompteNotFoundException {
+	public CompteCourant updateCompte(@PathVariable("id") Integer pid, @RequestBody CompteCourant compte) throws CompteNotFoundException {
 		if (pid != compte.getId()) {
 			String s = "Error pathvariable entre l'id : " + pid + " !!";
 			throw new CompteNotFoundException(s);
@@ -68,7 +74,7 @@ public class ControllerCompte {
 			throw new CompteNotFoundException(s);
 		}
 		
-		return ccpt.save(compte);
+		return (CompteCourant) ccpt.save(compte);
 	}
 
 	@DeleteMapping("{id}")
@@ -82,7 +88,7 @@ public class ControllerCompte {
 	}
 	
 	@PostMapping
-	public Compte addCompte(@RequestBody Compte compte) {
+	public CompteCourant addCompte(@RequestBody CompteCourant compte) {
 		return ccpt.save(compte);
 	}
 

@@ -9,14 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="compte")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Compte {
 	
 	@Id
@@ -24,9 +21,9 @@ public class Compte {
 	private Integer id;
     
 	@Column(length=11)
-	private String numero;
+	protected String numero;
 	
-	private Double solde;
+	protected Double solde;
 	
 	
 

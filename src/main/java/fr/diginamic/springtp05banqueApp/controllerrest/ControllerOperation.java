@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.diginamic.springtp05banqueApp.exception.CompteNotFoundException;
 import fr.diginamic.springtp05banqueApp.exception.OperationNotFoundException;
 import fr.diginamic.springtp05banqueApp.model.Compte;
+import fr.diginamic.springtp05banqueApp.model.CompteCourant;
 import fr.diginamic.springtp05banqueApp.model.Operation;
 import fr.diginamic.springtp05banqueApp.repository.iCrudCompte;
 import fr.diginamic.springtp05banqueApp.repository.iCrudOperation;
@@ -44,12 +45,12 @@ public class ControllerOperation {
 	
 	@GetMapping("operationsbycompte/{id}")
 	public Iterable<Operation> getOperationsByCompte(@PathVariable("id") Integer pid) throws CompteNotFoundException {
-		Optional<Compte> compte = cc.findById(pid);
-		if (compte.isEmpty()) {
-			String s = "Compte non trouvée, id: [" + pid + "]";
-			throw new CompteNotFoundException(s);
-		}
-		Iterable<Operation> result = co.findOperationsByCompte(compte); 
+		Compte compte = cc.findById(pid).get();
+//		if (compte.isEmpty()) {
+//			String s = "Compte non trouvée, id: [" + pid + "]";
+//			throw new CompteNotFoundException(s);
+//		}
+		Iterable<Operation> result =  co.findOperationsByCompte(compte); 
 		return result;
 	}
 	

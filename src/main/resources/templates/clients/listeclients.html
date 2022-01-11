@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thmeleaf.org">
+
+<head>
+    <title>Liste des clients</title>
+    <link rel="stylesheet" href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <h1 th:text="${titre}">HOME</h1>
+</body>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de naissance</th>
+            <th>Adresse</th>
+            <th>Banque</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="client : ${ clients }">
+            <td> <a th:href="@{/banque/client/detail/{id}(id=${client.id})}" th:text="${ client.nom }">Détail</a></td>
+            <td th:text="${ client.prenom }"></td>
+            <td th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}"></td>
+            <td th:text="${ client.adresse }"></td>
+            <td th:text="${ client.banque }"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+</html>
