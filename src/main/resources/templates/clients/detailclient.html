@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thmeleaf.org">
 
-<head>
-	<title>Liste des clients</title>
+<head th:replace="fragments/head :: taghead"></head>
+<!--<head>
+	<title th:text="#{detailclient.titre}"></title >
 	<link rel="stylesheet" href="@{/css/style.css}">
-
+-->
 </head>
 
 <body>
-	<h1 th:text="${titre}">HOME</h1>
+	<h1 th:text="#{detailclient.titre}">HOME</h1>
 
 	<form th:action="@{/banque/client/update}" th:object="${client}" method="post">
 
-		<label for="nom">nom : </label>
+		<label th:text="#{client.nom}">nom : </label>
 		<input type="text" th:field="*{nom}">
 		<br>
 		<label for="prenom">prenom : </label>
 		<input type="text" th:field="*{prenom}">
 		<br>
 		<label for="dateNaissance">date de naissance : </label>
+		<label th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}"></label>
+		<label> modifier : </label>
 		<input type="date" th:field="*{dateNaissance}">
 		<br>
 		<label for="adresse">adresse : </label>

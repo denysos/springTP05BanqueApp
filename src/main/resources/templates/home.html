@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thmeleaf.org">
+<head th:replace="fragments/head :: taghead"></head>
+<!--<head>
+    <title th:text="#{listeclients.titre}">Liste des clients</title >
+    <link rel="stylesheet" href="@{/css/style.css}">
+
+</head>
+-->
+<body>
+    <h1 th:text="#{home.titre}">HOME</h1>
+    <br>
+    <a th:href="@{/banque/listeclients}" th:text="#{home.lienlisteclients}"/>
+    <br>
+    <a th:href="@{/banque/client/add}" th:text="#{home.lienaddclient}"/>
+</body>
+
+
+
+
+</html>

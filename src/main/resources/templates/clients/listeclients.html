@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thmeleaf.org">
 
-<head>
-    <title>Liste des clients</title>
+<head th:replace="fragments/head :: taghead"></head>
+<!--<head>
+    <title th:text="#{listeclients.titre}">Liste des clients</title >
     <link rel="stylesheet" href="@{/css/style.css}">
 
 </head>
+-->
 
 <body>
-    <h1 th:text="${titre}">HOME</h1>
+	<h1 th:text="#{listeclients.titre}">HOME</h1>
+
+
+
+	<table>
+		<thead>
+			<tr>
+				<th th:text="#{client.nom}">Nom</th>
+				<th th:text="#{client.prenom}">Prenom</th>
+				<th th:text="#{client.datedenaissance}">Date de naissance</th>
+				<th th:text="#{client.adresse}">Adresse</th>
+				<th th:text="#{client.banque}">Banque</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="client : ${ clients }">
+				<td> <a th:href="@{/banque/client/detail/{id}(id=${client.id})}" th:text="${ client.nom }">Détail</a>
+				</td>
+				<td th:text="${ client.prenom }"></td>
+				<td th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}"></td>
+				<td th:text="${ client.adresse }"></td>
+				<td th:text="${ client.banque }"></td>
+				<td><a th:href="@{/banque/client/detail/{id}(id=${client.id})}">Détail</a></td>
+				<td><a th:href="@{/banque/client/delete/{id}(id=${client.id})}">Supprimer</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a th:href="@{/banque/client/add}">Nouveau client</a>
 </body>
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Date de naissance</th>
-            <th>Adresse</th>
-            <th>Banque</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="client : ${ clients }">
-            <td> <a th:href="@{/banque/client/detail/{id}(id=${client.id})}" th:text="${ client.nom }">Détail</a></td>
-            <td th:text="${ client.prenom }"></td>
-            <td th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}"></td>
-            <td th:text="${ client.adresse }"></td>
-            <td th:text="${ client.banque }"></td>
-        </tr>
-    </tbody>
-</table>
-
 
 </html>

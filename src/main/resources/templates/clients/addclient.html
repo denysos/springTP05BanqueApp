@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thmeleaf.org">
+
+<head th:replace="fragments/head :: taghead"></head>
+<!--<head>
+	<title th:text="#{addclient.titre}">Creation client</title>
+	<link rel="stylesheet" href="@{/css/style.css}">
+-->
+</head>
+
+<body>
+	<h1 th:text="#{addclient.titre}">HOME</h1>
+
+	<form th:action="@{/banque/client/add}" th:object="${clientForm}" method="post">
+
+		<label th:text="#{client.nom}"></label>
+		<input type="text" th:field="*{nom}">
+		<br>
+		<label th:text="#{client.prenom}"></label>
+		<input type="text" th:field="*{prenom}">
+		<br>
+		<label th:text="#{client.datedenaissance}"></label>
+		<input type="date" th:field="*{dateNaissance}">
+		<br>
+		<label th:text="#{client.adresse}"></label>
+		<br>
+		<label th:text="#{client.adresse.numero}"></label>
+		<input type="text" th:field="*{adresse.numero}">
+		<br>
+		<label th:text="#{client.adresse.rue}"></label>
+		<input type="text" th:field="*{adresse.rue}">
+		<br>
+		<label th:text="#{client.adresse.codepostal}"></label>
+		<input type="text" th:field="*{adresse.codePostal}">
+		<br>
+		<label th:text="#{client.adresse.ville}"></label>
+		<input type="text" th:field="*{adresse.ville}">
+		<br>
+		<label th:text="#{client.banque}"></label>
+
+		<!--		<input type="text" th:field="*{banque.id}"> -->
+		<!--		<input type="text" th:field="*{banque.nom}"> -->
+		<select th:field="*{banque}">
+			<option value="">sélectionner une banque</option>
+			<option th:each="banque : ${banques}" th:value="${banque.id}" th:text="${banque.nom}"></option>
+
+		</select>
+
+		<br>
+		<input type="submit" value="Create">
+	</form>
+	<a th:href="@{/banque/listeclients}">Retour</a>
+
+
+</body>
+
+</html>
