@@ -9,6 +9,8 @@
 </head>
 
 <body>
+	<header th:replace="fragments/header :: tagheader"></header>
+
 	<h1 th:text="#{addclient.titre}">HOME</h1>
 
 	<form th:action="@{/banque/client/add}" th:object="${clientForm}" method="post">

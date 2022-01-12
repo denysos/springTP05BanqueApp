@@ -1,4 +1,18 @@
-<header th:fragment="tagheader">
-<h1 th:text=#{header.titre}></h1>
+<header th:fragment="tagheader" class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+	<h1 th:text=#{header.titre}></h1>
+	<a th:href="@{/}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+		<svg class="bi me-2" width="40" height="32">
+			<use xlink:href="#bootstrap" />
+		</svg>
+		
+	</a>
+
+	<ul class="nav nav-pills">
+		<li class="nav-item"><a th:href="@{/}" th:text=#{home.lienvershome} class="nav-link active"
+				aria-current="page">Home</a></li>
+		<li class="nav-item"><a th:href="@{/banque/listeclients}" th:text=#{home.lienlisteclients} class="nav-link"></a>
+		</li>
+		<li class="nav-item"><a th:href="@{/banque/client/add}" th:text=#{home.lienaddclient} class="nav-link"></a></li>
+	</ul>
 
 </header>

@@ -9,6 +9,8 @@
 </head>
 
 <body>
+	<header th:replace="fragments/header :: tagheader"></header>
+	
 	<h1 th:text="#{detailclient.titre}">HOME</h1>
 
 	<form th:action="@{/banque/client/update}" th:object="${client}" method="post">
@@ -35,8 +37,8 @@
 		<label type="text" th:text="*{banque}"></label>
 		<input type="hidden" th:field="*{banque.id}">
 		<input type="hidden" th:field="*{banque.nom}">
-		 <input type="hidden" th:field="*{id}">
-		 <br>
+		<input type="hidden" th:field="*{id}">
+		<br>
 		<input type="submit" value="Update">
 	</form>
 	<a th:href="@{/banque/listeclients}">Retour</a>
