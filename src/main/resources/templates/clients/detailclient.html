@@ -5,45 +5,63 @@
 <!--<head>
 	<title th:text="#{detailclient.titre}"></title >
 	<link rel="stylesheet" href="@{/css/style.css}">
+	</head>
 -->
-</head>
 
 <body>
 	<header th:replace="fragments/header :: tagheader"></header>
-	
-	<h1 th:text="#{detailclient.titre}">HOME</h1>
 
-	<form th:action="@{/banque/client/update}" th:object="${client}" method="post">
+	<h1 th:utext="#{detailclient.titre}">HOME</h1>
 
-		<label th:text="#{client.nom}">nom : </label>
-		<input type="text" th:field="*{nom}">
+	<form class="row g-3" th:action="@{/banque/client/update}" th:object="${client}" method="post">
+		<div class="col-md-6">
+			<label th:text="#{client.nom}">nom : </label>
+			<input type="text" class="form-control" th:field="*{nom}" th:placeholder="#{client.nom}">
+		</div>
 		<br>
-		<label for="prenom">prenom : </label>
-		<input type="text" th:field="*{prenom}">
+		<div class="col-md-6">
+			<label th:text="#{client.prenom}">prenom : </label>
+			<input type="text" class="form-control" th:field="*{prenom}">
+
+		</div>
 		<br>
-		<label for="dateNaissance">date de naissance : </label>
-		<label th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}"></label>
-		<label> modifier : </label>
-		<input type="date" th:field="*{dateNaissance}">
+		<div class="col-md-6">
+			<label th:text="#{client.datedenaissance}">date de naissance : </label>
+			<label th:text="${#dates.format(client.dateNaissance, 'yyyy-MM-dd')}" class="form-control"></label>
+			<br>
+			<label> modifier : </label>
+			<input type="date" class="date form-control" data-date-format="yyyy-mm-dd" th:field="*{dateNaissance}">
+			<script type="text/javascript">
+				$('.date').datepicker({
+					format: 'yyyy-mm-dd'
+				});
+			</script>
+		</div>
 		<br>
-		<label for="adresse">adresse : </label>
-		<label type="text" size="50" th:text="*{adresse}"></label>
-		<input type="hidden" th:field="*{adresse.numero}">
-		<input type="hidden" th:field="*{adresse.rue}">
-		<input type="hidden" th:field="*{adresse.codePostal}">
-		<input type="hidden" th:field="*{adresse.ville}">
+		<div class="col-md-6">
+			<label th:text="#{client.adresse}">adresse : </label>
+			<label type="text" class="form-control" size="50" th:text="*{adresse}"></label>
+			<input type="hidden" th:field="*{adresse.numero}">
+			<input type="hidden" th:field="*{adresse.rue}">
+			<input type="hidden" th:field="*{adresse.codePostal}">
+			<input type="hidden" th:field="*{adresse.ville}">
+		</div>
 		<br>
-		<label for="banque">banque : </label>
-		<label type="text" th:text="*{banque}"></label>
-		<input type="hidden" th:field="*{banque.id}">
-		<input type="hidden" th:field="*{banque.nom}">
-		<input type="hidden" th:field="*{id}">
+		<div class="col-md-6">
+			<label th:text="#{client.banque}">banque : </label>
+			<label type="text" class="form-control" th:text="*{banque}"></label>
+			<input type="hidden" th:field="*{banque.id}">
+			<input type="hidden" th:field="*{banque.nom}">
+			<input type="hidden" th:field="*{id}">
+		</div>
 		<br>
-		<input type="submit" value="Update">
+		<div class="col-md-6">
+			<button type="button" class="btn btn-danger" value="Update" th:text="#{bouton.modifier}">
+		</div>
 	</form>
 	<a th:href="@{/banque/listeclients}">Retour</a>
 
-
+	<footer th:replace="fragments/footer :: tagfooter"></footer>
 </body>
 
 </html>

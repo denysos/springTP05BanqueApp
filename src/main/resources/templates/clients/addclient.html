@@ -13,47 +13,64 @@
 
 	<h1 th:text="#{addclient.titre}">HOME</h1>
 
-	<form th:action="@{/banque/client/add}" th:object="${clientForm}" method="post">
-
-		<label th:text="#{client.nom}"></label>
-		<input type="text" th:field="*{nom}">
+	<form class="row g-3" th:action="@{/banque/client/add}" th:object="${clientForm}" method="post">
+		<div class="col-md-6">
+			<label th:text="#{client.nom}"></label>
+			<input type="text" class="form-control" th:field="*{nom}">
+		</div>
 		<br>
-		<label th:text="#{client.prenom}"></label>
-		<input type="text" th:field="*{prenom}">
+		<div class="col-md-6">
+			<label th:text="#{client.prenom}"></label>
+			<input type="text" class="form-control" th:field="*{prenom}">
+		</div>
 		<br>
-		<label th:text="#{client.datedenaissance}"></label>
-		<input type="date" th:field="*{dateNaissance}">
+		<div class="col-md-6">
+			<label th:text="#{client.datedenaissance}"></label>
+			<input type="date" class="form-control" th:field="*{dateNaissance}">
+		</div>
 		<br>
 		<label th:text="#{client.adresse}"></label>
 		<br>
-		<label th:text="#{client.adresse.numero}"></label>
-		<input type="text" th:field="*{adresse.numero}">
+		<div class="col-md-6">
+			<label th:text="#{client.adresse.numero}"></label>
+			<input type="text" class="form-control" th:field="*{adresse.numero}">
+		</div>
 		<br>
-		<label th:text="#{client.adresse.rue}"></label>
-		<input type="text" th:field="*{adresse.rue}">
+		<div class="col-md-6">
+			<label th:text="#{client.adresse.rue}"></label>
+			<input type="text" class="form-control" th:field="*{adresse.rue}">
+		</div>
 		<br>
-		<label th:text="#{client.adresse.codepostal}"></label>
-		<input type="text" th:field="*{adresse.codePostal}">
+		<div class="col-md-6">
+			<label th:text="#{client.adresse.codepostal}"></label>
+			<input type="text" class="form-control" th:field="*{adresse.codePostal}">
+		</div>
 		<br>
-		<label th:text="#{client.adresse.ville}"></label>
-		<input type="text" th:field="*{adresse.ville}">
+		<div class="col-md-6">
+			<label th:text="#{client.adresse.ville}"></label>
+			<input type="text" class="form-control" th:field="*{adresse.ville}">
+		</div>
 		<br>
-		<label th:text="#{client.banque}"></label>
+		<div class="col-md-6">
+			<label th:text="#{client.banque}"></label>
 
-		<!--		<input type="text" th:field="*{banque.id}"> -->
-		<!--		<input type="text" th:field="*{banque.nom}"> -->
-		<select th:field="*{banque}">
-			<option value="">sélectionner une banque</option>
-			<option th:each="banque : ${banques}" th:value="${banque.id}" th:text="${banque.nom}"></option>
+			<!--		<input type="text" th:field="*{banque.id}"> -->
+			<!--		<input type="text" th:field="*{banque.nom}"> -->
+			<select th:field="*{banque}" class="form-control">
+				<option value="">sélectionner une banque</option>
+				<option th:each="banque : ${banques}" th:value="${banque.id}" th:text="${banque.nom}"></option>
 
-		</select>
+			</select>
+		</div>
 
 		<br>
-		<input type="submit" value="Create">
+		<div class="col-md-6">
+			<button type="button" class="btn btn-danger" value="Create" th:text="#{bouton.creation}">
+		</div>
 	</form>
 	<a th:href="@{/banque/listeclients}">Retour</a>
 
-
+	<footer th:replace="fragments/footer :: tagfooter"></footer>
 </body>
 
 </html>

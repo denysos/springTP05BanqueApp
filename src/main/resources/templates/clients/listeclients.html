@@ -16,7 +16,7 @@
 
 
 
-	<table>
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th th:text="#{client.nom}">Nom</th>
@@ -39,8 +39,11 @@
 			</tr>
 		</tbody>
 	</table>
-
+	<br>
 	<a th:href="@{/banque/client/add}">Nouveau client</a>
+	<br>
+	<br>
+	<footer th:replace="fragments/footer :: tagfooter"></footer>
 </body>
 
 </html>

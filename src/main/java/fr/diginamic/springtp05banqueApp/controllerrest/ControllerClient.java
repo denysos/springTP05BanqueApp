@@ -21,7 +21,7 @@ import fr.diginamic.springtp05banqueApp.model.Client;
 import fr.diginamic.springtp05banqueApp.repository.iCrudClient;
 
 @RestController
-@CrossOrigin
+@CrossOrigin	// permet de se connecter avec une appli à base de Vue.js ou autre
 @RequestMapping("api/banque/client")
 public class ControllerClient {
 

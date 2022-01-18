@@ -8,11 +8,11 @@
 </head>
 -->
 <body>
-    <h1 th:text="#{home.titre}">HOME</h1>
+    <h1 th:utext="#{home.titre}">HOME</h1>
     <br>
-    <a th:href="@{/banque/listeclients}" th:text="#{home.lienlisteclients}"/>
+    <a th:href="@{/banque/listeclients}" th:utext="#{home.lienlisteclients}"/>
     <br>
-    <a th:href="@{/banque/client/add}" th:text="#{home.lienaddclient}"/>
+    <a th:href="@{/banque/client/add}" th:utext="#{home.lienaddclient}"/>
 </body>
 
 

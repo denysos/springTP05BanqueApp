@@ -39,6 +39,8 @@ public class SpringConfigSecurity extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/logout").permitAll()
+		// authorise toutes les connexions REST sur /api
+		.antMatchers("/api/**").permitAll()
 		.anyRequest().authenticated().and().httpBasic();
 	}
 	
